@@ -3,10 +3,10 @@ module github.com/monegim/product-api-go
 go 1.19
 
 require (
+	github.com/fsnotify/fsnotify v1.6.0
 	github.com/hashicorp-demoapp/go-hckit v0.0.2
 	github.com/hashicorp/go-hclog v1.4.0
 	github.com/nicholasjackson/env v0.6.0
-	github.com/uber/jaeger-client-go v2.30.0+incompatible
 )
 
 require (
@@ -16,7 +16,8 @@ require (
 	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/opentracing/opentracing-go v1.2.0 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
+	github.com/uber/jaeger-client-go v2.30.0+incompatible // indirect
 	github.com/uber/jaeger-lib v2.4.0+incompatible // indirect
 	go.uber.org/atomic v1.7.0 // indirect
-	golang.org/x/sys v0.0.0-20220503163025-988cb79eb6c6 // indirect
+	golang.org/x/sys v0.0.0-20220908164124-27713097b956 // indirect
 )
