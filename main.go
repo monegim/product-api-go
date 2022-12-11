@@ -1,10 +1,12 @@
 package main
 
 import (
+	"os"
+
 	"github.com/hashicorp-demoapp/go-hckit"
 	"github.com/hashicorp/go-hclog"
+	"github.com/monegim/product-api-go/config"
 	"github.com/nicholasjackson/env"
-	"os"
 )
 
 type Config struct {
@@ -48,7 +50,15 @@ func main() {
 		BackoffExponentialBase: *backoffExponentialBase,
 	}
 	if conf.DBConnection == "" || conf.BindAddress == "" {
-		//config.New
+		c, err := config.New(*configFile, conf, configUpdated)
+		if err != nil {
+			logger.Error("Unable to load config file", "error", err)
+			os.Exit(1)
+		}
+		defer c.Close()
 	}
 
+}
+func configUpdated() {
+	logger.Info("Config file changed")
 }
