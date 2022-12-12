@@ -6,6 +6,7 @@ import (
 )
 
 type Connection interface {
+	IsConnected() (bool, error)
 }
 
 type PostgresSQL struct {
@@ -18,4 +19,12 @@ func New(connection string) (Connection, error) {
 		return nil, err
 	}
 	return &PostgresSQL{db}, nil
+}
+
+func(c *PostgresSQL) IsConnected() (bool, error) {
+	err := c.db.Ping()
+	if err != nil {
+		return false, err
+	}
+	return true, nil
 }
