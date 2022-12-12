@@ -6,6 +6,9 @@ require (
 	github.com/fsnotify/fsnotify v1.6.0
 	github.com/hashicorp-demoapp/go-hckit v0.0.2
 	github.com/hashicorp/go-hclog v1.4.0
+	github.com/jmoiron/sqlx v1.3.5
+	github.com/joho/godotenv v1.4.0
+	github.com/lib/pq v1.2.0
 	github.com/nicholasjackson/env v0.6.0
 	go.opentelemetry.io/otel v0.2.0
 )
