@@ -7,6 +7,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/hashicorp/go-hclog"
 	"github.com/monegim/product-api-go/config"
+	"github.com/monegim/product-api-go/handlers"
 	"github.com/nicholasjackson/env"
 )
 
@@ -50,6 +51,13 @@ func main() {
 		}
 		defer c.Close()
 	}
+
+	// Endpoints
+	healthHandler := handlers.NewHealth(logger)
+	r.HandleFunc("/health/livez", healthHandler.Liveness) .Methods("GET")
+	r.HandleFunc("/health/reayz", healthHandler.Readiness) .Methods("GET")
+	
+	logger.Info("Starting service", "bind", conf.BindAddress)
 	err = http.ListenAndServe(conf.BindAddress, r)
 	if err != nil {
 		logger.Error("Unable to start server", "bind", conf.BindAddress, "error", err)

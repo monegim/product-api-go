@@ -18,3 +18,9 @@ func NewHealth(l hclog.Logger) *Health {
 func (h *Health) Liveness(rw http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(rw, "%s", "ok")
 }
+
+func (h *Health) Readiness(rw http.ResponseWriter, r *http.Request)  {
+	// Check db connectivity
+
+	fmt.Fprintf(rw, "%s", "ok")
+}
