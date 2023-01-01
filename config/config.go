@@ -24,12 +24,15 @@ func New(fp string, c any) (*File, error) {
 }
 
 func (f *File) loadData() error {
-	cf, err := os.OpenFile(f.path,os.O_RDONLY,0644)
+	cf, err := os.OpenFile(f.path, os.O_RDONLY, 0644)
 	if err != nil {
 		return err
 	}
 	defer cf.Close()
 	jd := json.NewDecoder(cf)
 	return jd.Decode(f.userConfig)
+}
 
+func (f *File) Close()  {
+	
 }
