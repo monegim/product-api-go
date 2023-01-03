@@ -63,7 +63,11 @@ func main() {
 	r.Handle("/coffees/{id:[0-9]+}", coffeeHandler).Methods("GET")
 	// r.Handle("/coffees", coffeeHandler.CreateCoffee).Methods("GET")
 
-	
+	userHandler := handlers.NewUser(logger)
+	r.HandleFunc("/signup", userHandler.SignUp).Methods("POST")
+	r.HandleFunc("/signin", userHandler.SignIn).Methods("POST")
+	r.HandleFunc("/signout", userHandler.SignOut).Methods("POST")
+
 	logger.Info("Starting service", "bind", conf.BindAddress)
 	err = http.ListenAndServe(conf.BindAddress, r)
 	if err != nil {
