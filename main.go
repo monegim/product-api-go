@@ -53,9 +53,16 @@ func main() {
 	}
 
 	// Endpoints
+	// Liveness && Readiness
 	healthHandler := handlers.NewHealth(logger)
-	r.HandleFunc("/health/livez", healthHandler.Liveness) .Methods("GET")
-	r.HandleFunc("/health/reayz", healthHandler.Readiness) .Methods("GET")
+	r.HandleFunc("/health/livez", healthHandler.Liveness).Methods("GET")
+	r.HandleFunc("/health/reayz", healthHandler.Readiness).Methods("GET")
+
+	coffeeHandler := handlers.NewCoffee(logger)
+	r.Handle("/coffees", coffeeHandler).Methods("GET")
+	r.Handle("/coffees/{id:[0-9]+}", coffeeHandler).Methods("GET")
+	// r.Handle("/coffees", coffeeHandler.CreateCoffee).Methods("GET")
+
 	
 	logger.Info("Starting service", "bind", conf.BindAddress)
 	err = http.ListenAndServe(conf.BindAddress, r)
