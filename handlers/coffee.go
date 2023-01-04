@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/gorilla/mux"
 	"github.com/hashicorp/go-hclog"
 )
 
@@ -17,7 +18,9 @@ func NewCoffee(l hclog.Logger) *Coffee {
 
 func (c *Coffee) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
 	c.log.Info("Handle Coffee")
-	fmt.Fprintf(rw, "coffee")
+	vars := mux.Vars(r)
+	id := vars["id"]
+	fmt.Fprintf(rw, "coffee %s", id)
 
 }
 
