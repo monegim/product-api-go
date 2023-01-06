@@ -7,6 +7,7 @@ import (
 
 type Connection interface {
 	IsConnected() (bool, error)
+	GetCoffees(*int)(model.Coffees, err)
 }
 type PostgresSQL struct {
 	db *sqlx.DB

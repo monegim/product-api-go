@@ -7,9 +7,13 @@ import (
 
 type Coffees []Coffee
 
-func (c *Coffee) FromJSON(data io.Reader) error {
+func (c *Coffees) FromJSON(data io.Reader) error {
 	de := json.NewDecoder(data)
 	return de.Decode(c)
+}
+
+func (c *Coffees) ToJSON() ([]byte, error) {
+	return json.Marshal(c)
 }
 
 type Coffee struct {
