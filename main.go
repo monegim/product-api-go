@@ -4,12 +4,15 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/monegim/product-api-go/pkg/setting"
 	"github.com/monegim/product-api-go/routers"
 )
-
+func init() {
+	setting.Setup()
+}
 func main() {
 	gin.SetMode(setting.ServerSetting.RunMode)
 
@@ -21,10 +24,13 @@ func main() {
 	server := &http.Server{
 		Addr:           endPoint,
 		Handler:        routersInit,
-		ReadTimeout:    readTimeout,
-		WriteTimeout:   writeTimeout,
+		ReadTimeout:    readTimeout * time.Millisecond,
+		WriteTimeout:   writeTimeout * time.Millisecond,
 		MaxHeaderBytes: maxHeaderBytes,
 	}
 	log.Printf("[info] start http server listening %s", endPoint)
-	server.ListenAndServe()
+	err := server.ListenAndServe()
+	if err != nil {
+		log.Fatalf("could not start the server: %v", err)
+	}
 }
