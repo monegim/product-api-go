@@ -7,11 +7,13 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/monegim/product-api-go/models"
 	"github.com/monegim/product-api-go/pkg/setting"
 	"github.com/monegim/product-api-go/routers"
 )
 func init() {
 	setting.Setup()
+	models.Setup()
 }
 func main() {
 	gin.SetMode(setting.ServerSetting.RunMode)
