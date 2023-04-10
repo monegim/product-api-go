@@ -38,6 +38,7 @@ var ServerSetting = &Server{}
 
 type Database struct {
 	Type        string
+	Path        string
 	User        string
 	Password    string
 	Host        string
