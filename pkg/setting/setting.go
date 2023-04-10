@@ -1,10 +1,11 @@
 package setting
 
 import (
-	"log"
+	// "log"
 	"time"
 
 	"github.com/go-ini/ini"
+	log "github.com/sirupsen/logrus"
 )
 
 type App struct {
@@ -51,6 +52,7 @@ var cfg *ini.File
 var AppSetting = &App{}
 
 func Setup() {
+	log.Info("Initializing setup")
 	var err error
 	cfg, err = ini.Load("conf/app.ini")
 	if err != nil {

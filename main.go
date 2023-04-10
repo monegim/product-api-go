@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
-	"log"
+	"io"
+	"os"
+
 	"net/http"
 	"time"
 
@@ -10,13 +12,25 @@ import (
 	"github.com/monegim/product-api-go/models"
 	"github.com/monegim/product-api-go/pkg/setting"
 	"github.com/monegim/product-api-go/routers"
+	log "github.com/sirupsen/logrus"
 )
+
 func init() {
 	setting.Setup()
 	models.Setup()
 }
 func main() {
+	fmt.Println("Running main")
 	gin.SetMode(setting.ServerSetting.RunMode)
+
+	log := &log.Logger{
+		Out:   io.MultiWriter(os.Stdout),
+		Level: log.TraceLevel,
+		Formatter: &log.TextFormatter{
+			FullTimestamp: true,
+			TimestampFormat: "2006-01-02 15:04:05",
+		},
+	}
 
 	routersInit := routers.InitRouter()
 	readTimeout := setting.ServerSetting.ReadTimeout
