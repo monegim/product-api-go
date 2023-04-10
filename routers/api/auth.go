@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/monegim/product-api-go/pkg/app"
 	"github.com/monegim/product-api-go/pkg/e"
+	"github.com/monegim/product-api-go/pkg/util"
 	"github.com/monegim/product-api-go/service/auth_service"
 )
 
@@ -33,5 +34,5 @@ func GetAuth(c *gin.Context) {
 		appG.Response(http.StatusUnauthorized, e.ERROR_AUTH, nil)
 		return
 	}
-	
+	token, err := util.GenerateToken()
 }
