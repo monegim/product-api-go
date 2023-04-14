@@ -3,9 +3,11 @@ module github.com/monegim/product-api-go
 go 1.19
 
 require (
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-gonic/gin v1.9.0
 	github.com/go-ini/ini v1.67.0
 	github.com/mattn/go-sqlite3 v1.14.16
+	github.com/sirupsen/logrus v1.9.0
 	github.com/swaggo/files v1.0.1
 	github.com/swaggo/gin-swagger v1.6.0
 	gorm.io/driver/sqlite v1.4.4
