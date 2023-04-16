@@ -1,7 +1,6 @@
 package jwt
 
 import (
-	"go/token"
 	"net/http"
 
 	"github.com/dgrijalva/jwt-go"
