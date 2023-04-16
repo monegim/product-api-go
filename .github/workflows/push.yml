@@ -1,0 +1,5 @@
+name: golang-pipeline
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-22.04
