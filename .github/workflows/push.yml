@@ -4,6 +4,6 @@ jobs:
   test:
     runs-on: ubuntu-22.04
     steps:
-      - uses: action/checkout@v3
+      - uses: action/checkout@v2
       - name: Run Unit Tests
         run: go test
