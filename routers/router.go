@@ -4,9 +4,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/monegim/product-api-go/middleware/jwt"
 	"github.com/monegim/product-api-go/routers/api"
+	v1 "github.com/monegim/product-api-go/routers/api/v1"
 	swaggerfiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
-	v1 "github.com/swaggo/gin-swagger/example/multiple/api/v1"
 )
 
 func InitRouter() *gin.Engine {
