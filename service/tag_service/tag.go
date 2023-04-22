@@ -1,5 +1,7 @@
 package tag_service
 
+import "github.com/monegim/product-api-go/models"
+
 type Tag struct {
 	ID         int
 	Name       string
@@ -10,4 +12,6 @@ type Tag struct {
 	PageSize   int
 }
 
-
+func (t *Tag)GetAll([]models.Tag, error)  {
+	
+}
