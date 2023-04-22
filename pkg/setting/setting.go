@@ -48,6 +48,17 @@ type Database struct {
 }
 
 var DatabaseSetting = &Database{}
+
+type Redis struct {
+	Host        string
+	Password    string
+	MaxIdle     int
+	MaxActive   int
+	IdleTimeout time.Duration
+}
+
+var RedisSetting = &Redis{}
+
 var cfg *ini.File
 var AppSetting = &App{}
 
@@ -62,6 +73,9 @@ func Setup() {
 	mapTo("app", AppSetting)
 	mapTo("server", ServerSetting)
 	mapTo("database", DatabaseSetting)
+	mapTo("redis", RedisSetting)
+
+	RedisSetting.IdleTimeout = RedisSetting.IdleTimeout * time.Second
 }
 
 func mapTo(section string, v interface{}) {
