@@ -15,6 +15,14 @@ func TestSetup(t *testing.T) {
 	}
 }
 
+func TestSet(t *testing.T) {
+	key := "name"
+	value := "mostafaaaa"
+	err := gredis.Set(key, value, 0)
+	if err != nil {
+		t.Logf("TestSet err:%v\n", err)
+	}
+}
 func TestExists(t *testing.T) {
 	key := "name1"
 	exists := gredis.Exists(key)
