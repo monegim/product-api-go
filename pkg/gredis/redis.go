@@ -2,7 +2,9 @@ package gredis
 
 import (
 	"context"
+	"encoding/json"
 	"net"
+	"time"
 
 	"github.com/monegim/product-api-go/pkg/setting"
 	"github.com/redis/go-redis/v9"
@@ -27,6 +29,19 @@ func Setup() error {
 		},
 	})
 	return nil
+}
+
+// Set a key/value
+func Set(key string, data interface{}, expiration int) error {
+	conn := RedisConn.Conn()
+	defer conn.Close()
+
+	value, err := json.Marshal(data)
+	if err != nil {
+		return err
+	}
+	statusCmd := conn.Set(context.TODO(), key, value, time.Duration(expiration)*time.Second)
+	return statusCmd.Err()
 }
 
 // Exists check a key
