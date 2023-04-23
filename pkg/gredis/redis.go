@@ -34,7 +34,8 @@ func Exists(key string) bool {
 	conn := RedisConn.Conn()
 	defer conn.Close()
 	// conn.Exist
-	return true
+	intCmd := conn.Exists(context.TODO(), key)
+	return intCmd.Val() != 0
 }
 
 func Get(key string) ([]byte, error) {
