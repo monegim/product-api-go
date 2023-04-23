@@ -10,6 +10,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/monegim/product-api-go/models"
+	"github.com/monegim/product-api-go/pkg/gredis"
 	"github.com/monegim/product-api-go/pkg/setting"
 	"github.com/monegim/product-api-go/pkg/util"
 	"github.com/monegim/product-api-go/routers"
@@ -19,6 +20,8 @@ import (
 func init() {
 	setting.Setup()
 	models.Setup()
+	// logging.Setup()
+	gredis.Setup()
 	util.Setup()
 }
 func main() {
