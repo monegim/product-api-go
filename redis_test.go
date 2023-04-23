@@ -14,3 +14,11 @@ func TestSetup(t *testing.T) {
 		t.Logf("error:%v\n", err)
 	}
 }
+
+func TestExists(t *testing.T) {
+	key := "name1"
+	exists := gredis.Exists(key)
+	if !exists {
+		t.Error("key does not exists")
+	}
+}
