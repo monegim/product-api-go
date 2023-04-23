@@ -39,5 +39,8 @@ func Exists(key string) bool {
 }
 
 func Get(key string) ([]byte, error) {
-	return nil, nil
+	conn := RedisConn.Conn()
+	defer conn.Close()
+	strCmd := RedisConn.Get(context.TODO(), key)
+	return strCmd.Bytes()
 }
