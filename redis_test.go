@@ -17,14 +17,15 @@ func TestSetup(t *testing.T) {
 
 func TestSet(t *testing.T) {
 	key := "name"
-	value := "mostafaaaa"
+	// value := map[string]int{"my": 1}
+	value := "mostafa"
 	err := gredis.Set(key, value, 0)
 	if err != nil {
 		t.Logf("TestSet err:%v\n", err)
 	}
 }
 func TestExists(t *testing.T) {
-	key := "name1"
+	key := "name"
 	exists := gredis.Exists(key)
 	if !exists {
 		t.Error("key does not exists")
@@ -34,6 +35,7 @@ func TestExists(t *testing.T) {
 func TestGet(t *testing.T) {
 	key := "name"
 	val, err := gredis.Get(key)
+	t.Logf("value for key %s is %s\n", key, val)
 	if err != nil {
 		t.Errorf("error for TestGet: %v\n", err)
 	}
